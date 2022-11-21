@@ -1,0 +1,3 @@
+# Host变量
+http_port: 443
+ip_addr: "2.2.2.2"

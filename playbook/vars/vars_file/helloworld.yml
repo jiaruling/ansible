@@ -1,0 +1,18 @@
+- name: Hello World
+  hosts: localhost
+
+  # 引入变量  (存在相同变量名，后面引入的会覆盖前面引入的)
+  vars_files:
+    - "vars/demo.yml"
+    - "vars/test.yml"
+
+  # 【引入变量】的优先级比【本地定义变量】的优先级高
+  vars:
+    greetings: "hello from playbook vars"
+
+  tasks:
+    - name: Hello World
+      ansible.builtin.debug:
+        # 变量的引用
+        msg:
+          - "{{ greetings }}"

@@ -1,0 +1,7 @@
+- hosts: web1
+  name: play-test
+  remote_user: vagrant
+
+  tasks:
+  - name: check host connection
+    ping:

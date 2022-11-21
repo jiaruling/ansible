@@ -1,0 +1,19 @@
+- name: Hello World
+  hosts: localhost
+
+  # 变量的定义
+  vars:
+    greetings: "hello from vars"
+    demo:
+      a:
+        - a: 1
+        - b: 2
+      b: "test"
+
+  tasks:
+    - name: Hello World
+      ansible.builtin.debug:
+        # 变量的引用
+        msg:
+          - "{{ greetings }}"
+          - "{{ demo }}"

@@ -1,0 +1,20 @@
+- name: test loop and when
+  hosts: localhost
+
+  # 定义一个可迭代的变量
+  vars:
+    seq:
+      - 1
+      - 2
+      - 3
+      - 4
+
+
+  tasks:
+    - name: test loop and when
+      ansible.builtin.debug:
+        msg: "{{ item }}"
+      # 循环遍历
+      with_items: "{{ seq }}"
+      # 条件判断
+      when: item >= 3

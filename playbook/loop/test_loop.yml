@@ -1,0 +1,28 @@
+- name: Hello World
+  hosts: localhost
+
+  # 定义一个可迭代的变量
+  vars:
+    test:
+    - test1
+    - test2
+    - test3
+    - test4
+    demo:
+    - demo1
+    - demo2
+    - demo3
+    xyz:
+    - x
+    - y
+
+
+  tasks:
+    - name: Hello World
+      ansible.builtin.debug:
+        msg: "{{ item[0] }}, {{ item[1] }}, {{ item[2] }}"
+      # 多重循环遍历
+      with_nested:
+        - "{{ test }}"
+        - "{{ demo }}"
+        - "{{ xyz }}"
