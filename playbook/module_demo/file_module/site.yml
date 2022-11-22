@@ -1,0 +1,19 @@
+- name: file module
+  hosts: all
+  gather_facts: no
+  become: yes # 使用root权限
+
+  tasks:
+  - name: Create a directory if it does not exist
+    ansible.builtin.file:
+      path: /etc/test
+      state: directory
+  - name: copy files form local to remote
+    ansible.builtin.copy:
+      src: files/test.txt
+      dest: /etc/test/test.txt
+      backup: yes  # 允许备份
+  - name: test template
+    ansible.builtin.template:
+      src: templates/test.j2
+      dest: /etc/test/test.cfg
