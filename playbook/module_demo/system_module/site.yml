@@ -1,0 +1,22 @@
+- name: system module
+  hosts: all
+  # gather_facts: no  # 不获取节点主机信息
+  become: yes         # 使用root权限
+
+  tasks:
+  - name: test ping
+    ansible.builtin.ping:
+  - name: get times
+    ansible.builtin.debug:
+      msg: "{{ ansible_date_time }}"
+  - name: create group
+    ansible.builtin.group:
+      name: ansible_demo
+      state: present
+  - name: delete group
+    ansible.builtin.group:
+      name: ansible_demo
+      state: absent
+  - name: Create user
+    ansible.builtin.user:
+      name: demo
