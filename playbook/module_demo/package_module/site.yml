@@ -1,0 +1,27 @@
+- name: package module
+  hosts: all
+  # gather_facts: no  # 不获取节点主机信息
+  become: yes         # 使用root权限
+
+  tasks:
+    # - name: test yum module
+    #   ansible.builtin.yum:
+    #     name: git
+    #     state: present
+    #   when: ansible_facts['distribution'] == "CentOS"
+    # - name: test apt module
+    #   ansible.builtin.apt:
+    #     name: git
+    #     state: present
+    #     force_apt_get: yes
+    #   when: ansible_facts['distribution'] == "Ubuntu"
+    # - name: test package module
+    #   ansible.builtin.package:
+    #     name: vim
+    #     state: present
+    - name: pip install flask
+      ansible.builtin.pip3:
+        name: flask
+        state: present
+        virtualenv: /home/vagrant/vir/
+        virtualenv_command: /usr/bin/python3 -m venv
