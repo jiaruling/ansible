@@ -1,0 +1,21 @@
+
+---
+
+- name: net-tools module
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: test get_url
+      ansible.builtin.get_url:
+        url: https://www.python.org/ftp/python/3.8.0/Python-3.8.0.tgz
+        dest: /home/vagrant/
+    - name: test unarchive
+      ansible.builtin.unarchive:
+        src: /home/vagrant/Python-3.8.0.tgz
+        dest: /home/vagrant/
+        remote_src: yes
+    - name: test unarchive local file
+      ansible.builtin.unarchive:
+        src: Python-3.9.15.tgz
+        dest: /home/vagrant/

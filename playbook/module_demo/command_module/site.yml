@@ -1,0 +1,11 @@
+- name: command module
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: test command
+      ansible.builtin.command: cat /etc/hosts
+      register: hosts_value
+
+    - ansible.builtin.debug:
+        msg: "{{ hosts_value}}"
